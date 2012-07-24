@@ -1,0 +1,18 @@
+%p
+  User: #{@user.name}
+%p
+  Email: #{@user.email if @user.email}
+
+%h3 Maps you created
+
+%ul
+  - @user.owned_group_maps.each do |group_map|
+    %li
+      = link_to group_map.name, group_map_path(group_map)
+
+
+%h3 Maps you belong to
+
+%ul
+  - @user.group_maps.each do |group_map|
+    %li= link_to group_map.name, group_map_path(group_map)

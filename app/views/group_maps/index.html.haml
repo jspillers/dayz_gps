@@ -1,0 +1,23 @@
+%h1 Listing group_maps
+
+%table
+  %tr
+    %th Name
+    %th Description
+    %th Owner
+    %th
+    %th
+    %th
+
+  - @group_maps.each do |group_map|
+    %tr
+      %td= group_map.name
+      %td= group_map.description
+      %td= group_map.owner_id
+      %td= link_to 'Show', group_map
+      %td= link_to 'Edit', edit_group_map_path(group_map)
+      %td= link_to 'Destroy', group_map, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Group map', new_group_map_path
