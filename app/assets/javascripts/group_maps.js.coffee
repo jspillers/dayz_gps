@@ -2,18 +2,33 @@
 
 $ ->
   window.initialize = ->
-    myLatlng = new google.maps.LatLng(0, 0)
-    mapOptions =
-      center: myLatlng
-      zoom: 1
-      streetViewControl: false
+    map_options =
+      minZoom: 2
+      maxZoom: 6
+      inPng: not 0
+      mapTypeControl: not 1
+      center: new google.maps.LatLng(7.5, 7)
+      streetViewControl: not 1
+      draggableCursor: "default"
+      zoom: 3
       mapTypeControlOptions:
-        mapTypeIds: [ "moon" ]
+        mapTypeIds: [ "custom", google.maps.MapTypeId.ROADMAP ]
+        style: google.maps.MapTypeControlStyle.DROPDOWN_MENU
 
-    console.log google
-    map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions)
-    map.mapTypes.set "moon", window.moonMapType
-    map.setMapTypeId "moon"
+    map = new google.maps.Map(document.getElementById("map_canvas"), map_options)
+    map.mapTypes.set "chernarus", window.dayz_image_map
+    map.setMapTypeId "chernarus"
+
+  window.static_url = '/assets/'
+
+  window.dayz_image_map = new google.maps.ImageMapType(
+    getTileUrl: (a, b) ->
+      (if 0 > a.x or 0 > a.y or a.x > mapTileCounts[b].x or a.y > mapTileCounts[b].y then null else window.static_url + "tiles/" + b + "/" + a.x + "_" + a.y + ".png")
+    tileSize: new google.maps.Size(256, 256)
+    minZoom: 2
+    maxZoom: 6
+    name: "Chernarus"
+  )
 
   window.getNormalizedCoord = (coord, zoom) ->
     y = coord.y
@@ -23,19 +38,20 @@ $ ->
     return null  if x < 0 or x >= tileRange
     x: x
     y: y
-  window.moonTypeOptions =
-    getTileUrl: (coord, zoom) ->
-      normalizedCoord = getNormalizedCoord(coord, zoom)
-      return null  unless normalizedCoord
-      bound = Math.pow(2, zoom)
-      url = "http://mw1.google.com/mw-planetary/lunar/lunarmaps_v1/clem_bw" + "/" + zoom + "/" + normalizedCoord.x + "/" + (bound - normalizedCoord.y - 1) + ".jpg"
-      console.log url
-      url
 
-    tileSize: new google.maps.Size(256, 256)
-    maxZoom: 9
-    minZoom: 0
-    radius: 1738000
-    name: "Moon"
-
-  window.moonMapType = new google.maps.ImageMapType(moonTypeOptions)
+  window.mapTileCounts =
+    2:
+      x: 3
+      y: 3
+    3:
+      x: 7
+      y: 6
+    4:
+      x: 15
+      y: 13
+    5:
+      x: 31
+      y: 26
+    6:
+      x: 63
+      y: 53

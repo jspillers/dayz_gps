@@ -14,6 +14,7 @@ class GroupMapsController < ApplicationController
   # GET /group_maps/1.json
   def show
     @group_map = GroupMap.find(params[:id])
+    @asset_host = asset_host
 
     respond_to do |format|
       format.html do
