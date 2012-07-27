@@ -17,8 +17,9 @@ ActiveRecord::Schema.define(:version => 20120721194817) do
     t.string   "name"
     t.text     "description"
     t.integer  "owner_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.text     "player_positions"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
   end
 
   create_table "group_memberships", :force => true do |t|

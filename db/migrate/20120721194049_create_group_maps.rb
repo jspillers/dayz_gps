@@ -4,6 +4,7 @@ class CreateGroupMaps < ActiveRecord::Migration
       t.string :name
       t.text :description
       t.integer :owner_id
+      t.text :player_positions
 
       t.timestamps
     end

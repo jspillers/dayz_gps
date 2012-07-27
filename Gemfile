@@ -20,3 +20,5 @@ gem "email_spec", ">= 1.2.1", :group => :test
 gem "sass", ">= 3.1.12"
 gem "settingslogic"
 gem "capybara", :group => [:development, :test]
+gem 'factory_girl'
+gem 'database_cleaner'

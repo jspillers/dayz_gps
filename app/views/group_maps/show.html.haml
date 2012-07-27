@@ -7,8 +7,10 @@
   %b Description:
   = @group_map.description
 %p
-  %b Owner:
-  = link_to @group_map.owner.name, user_path(@group_map.owner)
+  %b group members
+  %ul
+  - @group_map.users.each do |user|
+    %li= link_to user.name, user_path(user)
 
 = link_to 'Edit', edit_group_map_path(@group_map)
 \|
@@ -26,4 +28,8 @@
   %script{:src => "http://maps.googleapis.com/maps/api/js?key=AIzaSyCK9DOLqMbvXzjArxcr5xp4LEGPpga_jm8&sensor=false", :type => "text/javascript"}
 
   :javascript
-    $(function() { initialize(); });
+    $(function() {
+      window.group_map_id = #{@group_map.id};
+      window.current_user_id = #{current_user.id};
+      window.initialize();
+    });
