@@ -1,0 +1,10 @@
+= form_for @group_membership do |f|
+  -if @group_membership.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@group_membership.errors.count, "error")} prohibited this group_membership from being saved:"
+      %ul
+        - @group_membership.errors.full_messages.each do |msg|
+          %li= msg
+
+  .actions
+    = f.submit 'Save'

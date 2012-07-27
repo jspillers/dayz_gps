@@ -1,0 +1,17 @@
+%h1 Listing group_memberships
+
+%table
+  %tr
+    %th Player name
+    %th
+
+  - @group_memberships.each do |group_membership|
+    %tr
+      %td= group_membership.user.name
+      %td= link_to 'Destroy', group_map_group_membership_path(@group_map, group_membership), :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Group membership', new_group_map_group_membership_path(@group_map)
+\|
+= link_to 'Back to map', group_map_path(@group_map)
