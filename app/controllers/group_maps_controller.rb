@@ -86,17 +86,20 @@ class GroupMapsController < ApplicationController
   private
 
   def check_logged_in
-    redirect_to '/' unless current_user.is_a?(User)
+    redirect_home unless current_user.is_a?(User)
   end
 
   def check_membership
     @group_map = GroupMap.find(params[:id])
-    redirect_to '/' unless current_user.is_a_member_of?(@group_map)
+    redirect_home unless current_user.is_a_member_of?(@group_map)
   end
 
   def check_ownership
     @group_map = GroupMap.find(params[:id])
-    redirect_to '/' unless @group_map.owner == current_user
+    redirect_home unless @group_map.owner == current_user
   end
 
+  def redirect_home
+    redirect_to('/', alert: 'must be logged in')
+  end
 end

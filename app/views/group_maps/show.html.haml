@@ -1,20 +1,22 @@
-%p#notice= notice
-
-%p
-  %b Name:
-  = @group_map.name
-%p
-  %b Description:
-  = @group_map.description
-%p
-  %b group members
+#group_maps_show
   %ul
-  - @group_map.users.each do |user|
-    %li= link_to user.name, user_path(user)
+    %li
+      %strong Name:
+      = @group_map.name
 
-= link_to 'Edit', edit_group_map_path(@group_map)
-\|
-= link_to 'Back', group_maps_path
+    %li
+      %strong Description:
+      = @group_map.description
+
+    %li
+      %strong group members
+      %ul
+      - @group_map.users.each do |user|
+        %li= link_to user.name, user_path(user)
+
+  = link_to 'Edit', edit_group_map_path(@group_map)
+  \|
+  = link_to 'Back', group_maps_path
 
 #map_canvas
 
@@ -25,7 +27,6 @@
     html { height: 100% }
     body { height: 100%; margin: 0; padding: 0 }
     #map_canvas { height: 100% }
-  %script{:src => "http://maps.googleapis.com/maps/api/js?key=AIzaSyCK9DOLqMbvXzjArxcr5xp4LEGPpga_jm8&sensor=false", :type => "text/javascript"}
 
   :javascript
     $(function() {

@@ -6,6 +6,8 @@ class User < ActiveRecord::Base
   has_many :group_maps, through: :group_memberships
   has_many :group_memberships
 
+  validates :name, uniqueness: true
+
   def is_a_member_of?(group_map)
     group_map.users.include?(self)
   end

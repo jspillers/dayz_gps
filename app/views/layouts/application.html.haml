@@ -5,8 +5,20 @@
     = stylesheet_link_tag    "application", :media => "all"
     = javascript_include_tag "application"
     = csrf_meta_tags
+    %script{:src => "http://maps.googleapis.com/maps/api/js?key=AIzaSyCK9DOLqMbvXzjArxcr5xp4LEGPpga_jm8&sensor=false", :type => "text/javascript"}
     = yield :head
   %body
+    #nav
+      - if notice || alert
+        %p#notice= notice
+        %p#alert= alert
+      %ul
+        - if current_user
+          %li= link_to 'My Maps', group_maps_path
+          %li= link_to 'Logout', signout_path
+        - else
+          %li= link_to 'Login or Register', signin_path
+
     = yield
 
 = yield :page_scripts

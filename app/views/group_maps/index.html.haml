@@ -15,8 +15,8 @@
       %td= group_map.description
       %td= group_map.owner_id
       %td= link_to 'Show', group_map
-      %td= link_to 'Edit', edit_group_map_path(group_map)
-      %td= link_to 'Destroy', group_map, :confirm => 'Are you sure?', :method => :delete
+      %td= link_to 'Edit', edit_group_map_path(group_map) if group_map.owner == current_user
+      %td= link_to 'Destroy', group_map, :confirm => 'Are you sure?', :method => :delete if group_map.owner == current_user
 
 %br
 
