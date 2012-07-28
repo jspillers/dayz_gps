@@ -1,7 +1,4 @@
-# http://d1ueujj26v4hmx.cloudfront.net/v1/4/1_1.png
-#require 'net/http'
 require 'open-uri'
-require 'URI'
 
 namespace :map do
 
