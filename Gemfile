@@ -14,7 +14,7 @@ gem 'haml', '>= 3.1.6'
 gem 'haml-rails', '>= 0.3.4', :group => :development
 gem 'rails-backbone', '>= 0.7.2'
 gem 'omniauth', '>= 1.1.0'
-gem 'omniauth-facebook'
+gem 'omniauth-google-oauth2'
 gem 'rspec-rails', '>= 2.11.0', :group => [:development, :test]
 gem 'machinist', :group => :test
 gem 'email_spec', '>= 1.2.1', :group => :test

@@ -1,12 +1,7 @@
 class SessionsController < ApplicationController
 
   def new
-    auth_provider = if Rails.env == 'production'
-      '/auth/facebook'
-    else
-      '/auth/developer'
-    end
-    redirect_to auth_provider
+    redirect_to "/auth/#{Rails.env == 'production' ? 'google' : 'developer'}"
   end
 
   def create
