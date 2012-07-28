@@ -1,0 +1,5 @@
+*.psd
+test
+spec
+app/assets/images/
+public/assets/
