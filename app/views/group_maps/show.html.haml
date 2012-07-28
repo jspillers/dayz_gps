@@ -32,6 +32,7 @@
 
   :javascript
     $(function() {
+      window.assets_url = "#{DayzGps::Application.config.action_controller.asset_host}";
       window.group_map_id = #{@group_map.id};
       window.current_user_id = #{current_user.id};
       window.initialize();

@@ -29,7 +29,7 @@ $ ->
 
   window.dayz_image_map = new google.maps.ImageMapType(
     getTileUrl: (a, b) ->
-      (if 0 > a.x or 0 > a.y or a.x > mapTileCounts[b].x or a.y > mapTileCounts[b].y then null else "/assets/tiles/" + b + "/" + a.x + "_" + a.y + ".png")
+      (if 0 > a.x or 0 > a.y or a.x > mapTileCounts[b].x or a.y > mapTileCounts[b].y then null else window.assets_url + "/assets/tiles/" + b + "/" + a.x + "_" + a.y + ".png")
     tileSize: new google.maps.Size(256, 256)
     minZoom: 2
     maxZoom: 6

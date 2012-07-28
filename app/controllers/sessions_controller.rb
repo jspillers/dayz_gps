@@ -1,7 +1,7 @@
 class SessionsController < ApplicationController
 
   def new
-    redirect_to "/auth/#{Rails.env == 'production' ? 'google' : 'developer'}"
+    redirect_to "/auth/#{Rails.env == 'production' ? 'google_oauth2' : 'developer'}"
   end
 
   def create
