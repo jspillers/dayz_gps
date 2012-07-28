@@ -1,0 +1,23 @@
+%h1 New group_membership
+
+= form_for @group_membership do |f|
+  -if @group_membership.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@group_membership.errors.count, "error")} prohibited this group_membership from being saved:"
+      %ul
+        - @group_membership.errors.full_messages.each do |msg|
+          %li= msg
+
+  - if @users.blank?
+    %h3 no more users are available to be added!
+  - else
+    .field
+      = f.label :player
+      = f.select :user_id, options_from_collection_for_select(@users, :id, :name)
+
+    = hidden_field_tag :group_map_id, @group_map.id
+
+    .actions
+      = f.submit 'Save'
+
+= link_to 'Back', group_map_group_memberships_path(@group_map)

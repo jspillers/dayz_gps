@@ -1,6 +1,10 @@
 DayzGps::Application.routes.draw do
 
-  resources :group_maps
+  resources :group_maps do
+    resources :group_memberships
+  end
+
+  resources :group_memberships
 
   resources :users, :only => [ :show, :edit, :update ]
 

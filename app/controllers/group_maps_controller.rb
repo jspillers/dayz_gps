@@ -1,6 +1,6 @@
 class GroupMapsController < ApplicationController
 
-  before_filter :check_logged_in
+  before_filter :authenticate_user!
   before_filter :check_membership, only: [:show, :update]
   before_filter :check_ownership, only: [:destroy]
 
@@ -84,10 +84,6 @@ class GroupMapsController < ApplicationController
   end
 
   private
-
-  def check_logged_in
-    redirect_home unless current_user.is_a?(User)
-  end
 
   def check_membership
     @group_map = GroupMap.find(params[:id])

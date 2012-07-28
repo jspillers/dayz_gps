@@ -16,13 +16,4 @@ class GroupMap < ActiveRecord::Base
   def player_positions
     self[:player_positions].blank? ? {} : self[:player_positions]
   end
-
-  def user_ids=(ids)
-    ids_array = ids.split(',')
-    self[:users] = User.find(ids_array)
-  end
-
-  def user_ids
-    users.map(&:id).join(',')
-  end
 end
