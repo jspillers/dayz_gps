@@ -15,3 +15,7 @@ end
 GroupMembership.blueprint do
   # Attributes here
 end
+
+MapMarker.blueprint do
+  # Attributes here
+end

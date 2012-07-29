@@ -1,5 +1,7 @@
 DayzGps::Application.routes.draw do
 
+  resources :map_markers
+
   resources :group_maps do
     resources :group_memberships
   end

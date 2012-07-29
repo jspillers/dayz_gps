@@ -1,0 +1,24 @@
+%p#notice= notice
+
+%p
+  %b User:
+  = @map_marker.user_id
+%p
+  %b Group map:
+  = @map_marker.group_map_id
+%p
+  %b Lat:
+  = @map_marker.lat
+%p
+  %b Lng:
+  = @map_marker.lng
+%p
+  %b Kind:
+  = @map_marker.kind
+%p
+  %b Label:
+  = @map_marker.label
+
+= link_to 'Edit', edit_map_marker_path(@map_marker)
+\|
+= link_to 'Back', map_markers_path

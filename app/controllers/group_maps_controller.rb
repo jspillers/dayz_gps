@@ -4,17 +4,6 @@ class GroupMapsController < ApplicationController
   before_filter :check_membership, only: [:show, :update]
   before_filter :check_ownership, only: [:destroy]
 
-  # GET /group_maps
-  # GET /group_maps.json
-  def index
-    @group_maps = GroupMap.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @group_maps }
-    end
-  end
-
   # GET /group_maps/1
   # GET /group_maps/1.json
   def show

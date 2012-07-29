@@ -17,4 +17,5 @@
 // require backbone_rails_sync
 // require backbone_datalink
 // require backbone/dayz_group_map
+// require main
 //= require_tree .

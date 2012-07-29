@@ -1,0 +1,28 @@
+= form_for @map_marker do |f|
+  -if @map_marker.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@map_marker.errors.count, "error")} prohibited this map_marker from being saved:"
+      %ul
+        - @map_marker.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :user_id
+    = f.number_field :user_id
+  .field
+    = f.label :group_map_id
+    = f.number_field :group_map_id
+  .field
+    = f.label :lat
+    = f.number_field :lat
+  .field
+    = f.label :lng
+    = f.number_field :lng
+  .field
+    = f.label :kind
+    = f.text_field :kind
+  .field
+    = f.label :label
+    = f.text_field :label
+  .actions
+    = f.submit 'Save'

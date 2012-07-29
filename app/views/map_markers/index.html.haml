@@ -1,0 +1,29 @@
+%h1 Listing map_markers
+
+%table
+  %tr
+    %th User
+    %th Group map
+    %th Lat
+    %th Lng
+    %th Kind
+    %th Label
+    %th
+    %th
+    %th
+
+  - @map_markers.each do |map_marker|
+    %tr
+      %td= map_marker.user_id
+      %td= map_marker.group_map_id
+      %td= map_marker.lat
+      %td= map_marker.lng
+      %td= map_marker.kind
+      %td= map_marker.label
+      %td= link_to 'Show', map_marker
+      %td= link_to 'Edit', edit_map_marker_path(map_marker)
+      %td= link_to 'Destroy', map_marker, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Map marker', new_map_marker_path
