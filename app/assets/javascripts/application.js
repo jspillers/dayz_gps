@@ -13,8 +13,12 @@
 //= require jquery
 //= require jquery_ujs
 //= require underscore
-// require backbone
-// require backbone_rails_sync
-// require backbone_datalink
-// require backbone/dayz_group_map
-//= require_tree .
+//= require backbone
+//
+//= require .//dayz_gps
+//
+//= require_tree ../templates/
+//= require_tree .//models
+//= require_tree .//collections
+//= require_tree .//views
+//= require_tree .//routers
