@@ -1,11 +1,15 @@
+window.DayzGps = {}
+console.log DayzGps
+
 #= require_self
 #= require_tree ./templates
+#= require_tree ./collections
 #= require_tree ./models
 #= require_tree ./views
 #= require_tree ./routers
 
-window.DayzGroupMap =
-  Models: {}
-  Collections: {}
-  Routers: {}
-  Views: {}
+#window.DayzGps =
+#  Models: {}
+#  Collections: {}
+#  Routers: {}
+#  Views: {}

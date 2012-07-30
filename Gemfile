@@ -12,7 +12,7 @@ end
 gem 'jquery-rails'
 gem 'haml', '>= 3.1.6'
 gem 'haml-rails', '>= 0.3.4', :group => :development
-gem 'rails-backbone', '>= 0.7.2'
+gem 'backbone-on-rails'
 gem 'omniauth', '>= 1.1.0'
 gem 'omniauth-google-oauth2'
 gem 'rspec-rails', '>= 2.11.0', :group => [:development, :test]

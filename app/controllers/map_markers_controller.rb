@@ -2,7 +2,7 @@ class MapMarkersController < ApplicationController
   # GET /map_markers
   # GET /map_markers.json
   def index
-    @map_markers = MapMarker.all
+    @map_markers = MapMarker.where(group_map_id:params[:group_map_id]).all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -41,6 +41,7 @@ class MapMarkersController < ApplicationController
   # POST /map_markers.json
   def create
     @map_marker = MapMarker.new(params[:map_marker])
+    @map_marker.group_map_id = params[:group_map_id]
 
     respond_to do |format|
       if @map_marker.save

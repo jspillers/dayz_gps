@@ -9,7 +9,7 @@ class GroupMapsController < ApplicationController
   def show
     respond_to do |format|
       format.html
-      format.json { render json: @group_map.player_positions }
+      format.json { render json: @group_map.map_markers }
     end
   end
 

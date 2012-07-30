@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120721194817) do
+ActiveRecord::Schema.define(:version => 20120729224225) do
 
   create_table "group_maps", :force => true do |t|
     t.string   "name"
@@ -25,6 +25,17 @@ ActiveRecord::Schema.define(:version => 20120721194817) do
   create_table "group_memberships", :force => true do |t|
     t.integer  "group_map_id"
     t.integer  "user_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  create_table "map_markers", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "group_map_id"
+    t.integer  "lat"
+    t.integer  "lng"
+    t.string   "kind"
+    t.string   "label"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
   end
