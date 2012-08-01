@@ -1,0 +1,22 @@
+{
+  "name": "dayz-gps-socket",
+  "author": {
+    "name": "Jarrod S",
+    "email": "support@nodejitsu.com"
+  },
+  "scripts": {
+    "start": "./bin/server"
+  },
+  "version": "0.1.0-1",
+  "dependencies": {
+    "socket.io": "v0.8.x",
+    "express": "v2.5.x"
+  },
+  "analyze": false,
+  "devDependencies": {},
+  "optionalDependencies": {},
+  "engines": {
+    "node": "*"
+  },
+  "subdomain": "dayz-gps-socket"
+}

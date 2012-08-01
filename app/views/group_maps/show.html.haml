@@ -1,4 +1,6 @@
 #group_maps_show
+
+  %h1#msg loading...
   %ul
     %li
       %strong Name:
@@ -24,6 +26,7 @@
 
 - content_for :head do
   %meta{:content => "initial-scale=1.0, user-scalable=no", :name => "viewport"}/
+
   :css
     html { height: 100% }
     body { height: 100%; margin: 0; padding: 0 }
@@ -32,8 +35,23 @@
 - content_for :page_scripts do
   :javascript
     $(function() {
-      window.assets_url = "#{DayzGps::Application.config.action_controller.asset_host}";
-      window.group_map_id = #{@group_map.id};
-      window.current_user_id = #{current_user.id};
-      window.initialize();
+      //window.assets_url = "#{DayzGps::Application.config.action_controller.asset_host}";
+      //window.group_map_id = #{@group_map.id};
+      //window.current_user_id = #{current_user.id};
+      //window.initialize();
+
+      $.getScript('http://localhost:8080/socket.io/socket.io.js').done(function(script, textStatus) {
+        socket = io.connect('http://localhost:8080');
+        // React to a received message
+        socket.on('ping', function (data) {
+
+          // Modify the DOM to show the message
+          document.getElementById("msg").innerHTML = data.msg;
+
+          // Send a message back to the server
+          socket.emit('pong', {
+            msg: "The web browser also knows socket.io."
+          });
+        });
+      });
     });
