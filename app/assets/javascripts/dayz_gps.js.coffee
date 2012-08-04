@@ -3,10 +3,14 @@ window.DayzGps =
   Collections: {}
   Views: {}
   Routers: {}
+  Socket: {}
   init: ->
-    console.log 'Hello from Backbone!'
-    map_marker = new DayzGps.Models.MapMarker()
-    console.log map_marker
+    @map = new DayzGps.Views.Map
+      current_user_id: window.current_user_id
+      asset_host: window.asset_host
+      group_map_id: window.group_map_id
+      google: window.google
 
 $(document).ready ->
-  DayzGps.init()
+  $.getScript("http://localhost:8080/socket.io/socket.io.js").done (script, textStatus) ->
+    DayzGps.init()

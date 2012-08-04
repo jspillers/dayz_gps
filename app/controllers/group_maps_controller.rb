@@ -7,6 +7,8 @@ class GroupMapsController < ApplicationController
   # GET /group_maps/1
   # GET /group_maps/1.json
   def show
+    @asset_host = DayzGps::Application.config.action_controller.asset_host ||
+                  "http://localhost:#{request.port.inspect}"
     respond_to do |format|
       format.html
       format.json { render json: @group_map.map_markers }
