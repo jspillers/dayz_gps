@@ -1,34 +1,54 @@
 #!/usr/bin/env node
 
-var express = require("express"),
-    app = express.createServer(),
-    io = require('socket.io').listen(app); // socket.io may listen to an http
-                                           // or express server
-                                           // assuming io is the Socket.IO server object
+var express = require('express');
+var backboneio = require('../lib/index');
 
-io.configure(function () { 
-  io.set("transports", ["xhr-polling"]); 
-  io.set("polling duration", 10); 
-});
+var app = express.createServer();
+app.use(express.static(__dirname));
 
-// Use Express to serve static content, such as our index.html
-app.configure(function(){
-  app.use(express.static(__dirname + '/../public'));
-});
+app.listen(3000);
+console.log('http://localhost:3000/');
 
-//Socket.io emits this event when a connection is made.
-io.sockets.on('connection', function (socket) {
+var messages = backboneio.createBackend();
+messages.use(backboneio.middleware.memoryStore());
 
-  // Emit a message to send it to the client.
-  socket.emit('ping', { msg: 'Hello. I know socket.io.' });
+backboneio.listen(app, { messages: messages });
 
-  // Print messages from the client.
-  socket.on('pong', function (data) {
-    console.log(data.msg);
-  });
+//backboneio.configure(function () { 
+//  io.set("transports", ["xhr-polling"]); 
+//  io.set("polling duration", 10); 
+//});
 
-});
 
-app.listen(8080);
-
-console.log('socket.io server started on port 8080');
+//var express = require("express"),
+//    app = express.createServer(),
+//    io = require('socket.io').listen(app); // socket.io may listen to an http
+//                                           // or express server
+//                                           // assuming io is the Socket.IO server object
+//
+//io.configure(function () { 
+//  io.set("transports", ["xhr-polling"]); 
+//  io.set("polling duration", 10); 
+//});
+//
+//// Use Express to serve static content, such as our index.html
+//app.configure(function(){
+//  app.use(express.static(__dirname + '/../public'));
+//});
+//
+////Socket.io emits this event when a connection is made.
+//io.sockets.on('connection', function (socket) {
+//
+//  // Emit a message to send it to the client.
+//  socket.emit('ping', { msg: 'Hello. I know socket.io.' });
+//
+//  // Print messages from the client.
+//  socket.on('pong', function (data) {
+//    console.log(data.msg);
+//  });
+//
+//});
+//
+//app.listen(8080);
+//
+//console.log('socket.io server started on port 8080');
