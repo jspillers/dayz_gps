@@ -26,6 +26,8 @@
 
 - content_for :head do
   %meta{:content => "initial-scale=1.0, user-scalable=no", :name => "viewport"}/
+  %script{:src => "http://localhost:8080/socket.io/socket.io.js"}
+  %script{:src => "http://localhost:8080/socket.io/backbone.io.js"}
 
   :css
     html { height: 100% }
@@ -34,8 +36,17 @@
 
 - content_for :page_scripts do
   :javascript
-    $(function() {
-      window.asset_host = "#{@asset_host}";
-      window.group_map_id = #{@group_map.id};
-      window.current_user_id = #{current_user.id};
-    });
+    window.asset_host = "#{@asset_host}";
+    window.group_map_id = #{@group_map.id};
+    window.current_user_id = #{current_user.id};
+
+    window.Backbone.io.connect('http://localhost:8080');
+
+    var opts = {
+      current_user_id: window.current_user_id,
+      asset_host:      window.asset_host,
+      group_map_id:    window.group_map_id,
+      google:          window.google
+    };
+
+    window.DayzGps.init(opts);

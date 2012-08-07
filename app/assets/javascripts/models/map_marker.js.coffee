@@ -1,5 +1,7 @@
 class DayzGps.Models.MapMarker extends Backbone.Model
 
+  backend: 'messages'
+
   initialize: (opts) ->
     @google = DayzGps.google
     @map = DayzGps.google_map
