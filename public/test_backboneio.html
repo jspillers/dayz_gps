@@ -3,13 +3,15 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
     <script src="http://documentcloud.github.com/underscore/underscore-min.js"></script>
     <script src="http://documentcloud.github.com/backbone/backbone-min.js"></script>
-    <script src="http://localhost:3000/socket.io/socket.io.js"></script>
-    <script src="http://localhost:3000/socket.io/backbone.io.js"></script>
+    <script src="http://localhost:8080/socket.io/socket.io.js"></script>
+    <script src="http://localhost:8080/socket.io/backbone.io.js"></script>
 
     <script>
-        Backbone.io.connect('http://localhost:3000');
+        Backbone.io.connect('http://localhost:8080');
 
-        var Message = Backbone.Model.extend({
+        window.Namespace = {};
+
+        Namespace.Message = Backbone.Model.extend({
 
             initialize: function() {
                 this.on('error', function(model, res) {
@@ -19,12 +21,12 @@
 
         });
 
-        var Messages = Backbone.Collection.extend({
+        Namespace.Messages = Backbone.Collection.extend({
 
             // Specify the backend with which to sync
             backend: 'messages',
 
-            model: Message,
+            model: Namespace.Message,
 
             initialize: function() {
                 // Setup default backend bindings
@@ -34,7 +36,7 @@
 
         });
 
-        var MessageView = Backbone.View.extend({
+        Namespace.MessageView = Backbone.View.extend({
 
             tagName: 'li',
 
@@ -58,7 +60,7 @@
 
         });
 
-        var MessagesView = Backbone.View.extend({
+        Namespace.MessagesView = Backbone.View.extend({
 
             events: {
                 'click .send': 'send',
@@ -74,7 +76,7 @@
                 $(this.el).html(this.template());
 
                 this.collection.each(function(message) {
-                    var view = new MessageView({ model: message });
+                    var view = new Namespace.MessageView({ model: message });
                     this.$('ul').append(view.render().el);
                 });
 
@@ -93,9 +95,9 @@
         });
 
         $(function() {
-            window.messages = new Messages();
+            window.messages = new Namespace.Messages();
             window.messages.fetch();
-            new MessagesView({ el: $('#messages'), collection: messages }).render();
+            new Namespace.MessagesView({ el: $('#messages'), collection: messages }).render();
         });
     </script>
 
