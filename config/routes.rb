@@ -19,5 +19,7 @@ DayzGps::Application.routes.draw do
 
   match '/auth/failure' => 'sessions#failure'
 
+  match '/test_backboneio' => 'home#test_backboneio'
+
   root :to => "home#index"
 end

@@ -5,8 +5,30 @@
     = stylesheet_link_tag    "application", :media => "all"
     = javascript_include_tag "application"
     = csrf_meta_tags
+
     %script{:src => "http://maps.googleapis.com/maps/api/js?key=AIzaSyCK9DOLqMbvXzjArxcr5xp4LEGPpga_jm8&sensor=false", :type => "text/javascript"}
+    %script{:src => "http://localhost:8080/socket.io/socket.io.js"}
+    %script{:src => "http://localhost:8080/socket.io/backbone.io.js"}
+
+    :javascript
+      window.Backbone.io.connect('http://localhost:8080');
+
+    =# javascript_include_tag "test_backbone"
+    = javascript_include_tag "backbone_app"
+
     = yield :head
+
+    :plain
+      <script id="message-template" type="text/template">
+        <%= text %>
+        <a class="delete" href="#">[x]</a>
+      </script>
+      <script id="messages-template" type="text/template">
+        <input class="message" type="text">
+        <input class="send" type="submit" value="Send">
+        <ul></ul>
+      </script>
+
   %body
     #nav
       - if notice || alert
