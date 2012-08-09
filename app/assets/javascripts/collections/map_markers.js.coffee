@@ -1,6 +1,6 @@
 class DayzGps.Collections.MapMarkers extends Backbone.Collection
 
-  #backend: 'messages'
+  backend: 'messages'
 
   model: DayzGps.Models.MapMarker
 
