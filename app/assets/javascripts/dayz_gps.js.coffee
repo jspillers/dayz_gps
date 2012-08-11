@@ -17,17 +17,7 @@ window.DayzGps =
     @google_map      = @google_map_view.map
     @map_markers     = new DayzGps.Collections.MapMarkers()
 
-    models = [
-      {
-        lat: 0
-        lng: 0
-        type: 'player'
-        label: 'Bob'
-        owner_id: @current_user_id
-      }
-    ]
-
-    @map_markers.reset(models)
+    @map_markers.fetch()
 
     @socket          = new DayzGps.SocketIo(collection: @map_markers)
     @map_view        = new DayzGps.Views.MapView(collection: @map_markers)
