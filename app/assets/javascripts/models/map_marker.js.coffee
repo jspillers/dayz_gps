@@ -1,9 +1,9 @@
 class DayzGps.Models.MapMarker extends Backbone.Model
 
   initialize: (opts) ->
-    console.log opts
     @google = DayzGps.google
     @map = DayzGps.google_map
+    @info_window_views = DayzGps.info_window_views
 
     @marker = new @google.maps.Marker
       position: @.get_lat_lng()
@@ -14,7 +14,6 @@ class DayzGps.Models.MapMarker extends Backbone.Model
     @.setup_event_listeners()
 
   setup_event_listeners: ->
-    console.log 'here'
     @google.maps.event.addListener @marker, 'dblclick', @.handle_dbl_click
     @google.maps.event.addListener @marker, 'click', @.handle_click
     @google.maps.event.addListener @marker, 'dragend', @.handle_drag_end
@@ -23,8 +22,25 @@ class DayzGps.Models.MapMarker extends Backbone.Model
   get_lat_lng: ->
     new @google.maps.LatLng(@.get('lat'), @.get('lng'))
 
-  handle_click: ->
-    console.log 'handle click'
+  handle_click: =>
+    _.each @info_window_views, (win_view) -> win_view.close()
+
+    @info_window_view = if !@info_window_views[@cid]?
+      inf_win_view = new DayzGps.Views.InfoWindowView(map_marker: @)
+      @info_window_views[@cid] = inf_win_view
+      inf_win_view
+    else
+      @info_window_views[@cid]
+
+    @info_window_view.render()
+
+  delete: ->
+    @marker.setMap()
+    @marker = null
+    delete @info_window_views[@cid]
+    @info_window_view = null
+    @.destroy()
+
 
   handle_dbl_click: ->
     console.log 'handle double click'
