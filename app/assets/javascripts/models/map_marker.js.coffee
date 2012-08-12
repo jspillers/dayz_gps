@@ -35,12 +35,14 @@ class DayzGps.Models.MapMarker extends Backbone.Model
     @info_window_view.render()
 
   delete: ->
+    @.nullify()
+    @.destroy()
+
+  nullify: ->
     @marker.setMap()
     @marker = null
     delete @info_window_views[@cid]
     @info_window_view = null
-    @.destroy()
-
 
   handle_dbl_click: ->
     console.log 'handle double click'

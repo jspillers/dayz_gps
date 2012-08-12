@@ -20,4 +20,5 @@ class DayzGps.Collections.MapMarkers extends Backbone.Collection
     @.bind "backend:delete", (model) ->
       console.log "backend:delete"
       console.log model
+      @.get(model.id).nullify()
       @.remove model.id
