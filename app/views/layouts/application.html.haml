@@ -20,9 +20,29 @@
 
     :plain
       <script id="info-window-template" type="text/template">
-        <h3><%= type %>:</h3>
-        <h1><%= label %></h1>
-        <p><%= description %></p>
+        <form id="info-window-<%= marker_cid %>" class="info-window">
+
+          <h3>Label:</h3>
+          <input type="text" name="label" value="<%= label %>" />
+
+          <h3>Type:</h3>
+          <select class="marker-type">
+            <option value="">select</option>
+            <option value="player">Player</option>
+            <option value="enemy_player">Enemy Player</option>
+            <option value="squad">Squad</option>
+            <option value="vehicle">Vehicle</option>
+            <option value="camp">Camp Site</option>
+            <option value="waypoint">Waypoint</option>
+            <option value="objective">Objective</option>
+            <option value="sniper">Sniper</option>
+            <option value="enemy_sniper">Enemy Sniper</option>
+          </select>
+
+          <h3>Description:</h3>
+          <textarea name="description"><%= description %></textarea>
+        </form>
+
         <form id="info-window-delete-<%= marker_cid %>" class="info-window">
           <button type="submit" class="delete-marker">remove</button>
         </form>

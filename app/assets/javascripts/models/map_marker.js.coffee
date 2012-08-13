@@ -14,8 +14,8 @@ class DayzGps.Models.MapMarker extends Backbone.Model
     @.setup_event_listeners()
 
   setup_event_listeners: ->
-    @google.maps.event.addListener @marker, 'dblclick', @.handle_dbl_click
     @google.maps.event.addListener @marker, 'click', @.handle_click
+    @google.maps.event.addListener @marker, 'dblclick', @.handle_dbl_click
     @google.maps.event.addListener @marker, 'dragend', @.handle_drag_end
     @.on('change', @.update_marker, @)
 
