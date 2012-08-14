@@ -21,9 +21,8 @@
     :plain
       <script id="info-window-template" type="text/template">
         <form id="info-window-<%= marker_cid %>" class="info-window">
-
           <h3>Label:</h3>
-          <input type="text" name="label" value="<%= label %>" />
+          <input class="marker-label" type="text" name="label" value="<%= label %>" />
 
           <h3>Type:</h3>
           <select class="marker-type">
@@ -40,11 +39,11 @@
           </select>
 
           <h3>Description:</h3>
-          <textarea name="description"><%= description %></textarea>
-        </form>
-
-        <form id="info-window-delete-<%= marker_cid %>" class="info-window">
-          <button type="submit" class="delete-marker">remove</button>
+          <textarea class="marker-description" name="description"><%= description %></textarea>
+          <p>
+            <button type="submit" class="save-marker">save</button>
+            <button type="submit" class="delete-marker">delete</button>
+          </p>
         </form>
       </script>
       <script id="message-template" type="text/template">

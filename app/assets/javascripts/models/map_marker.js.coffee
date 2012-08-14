@@ -5,13 +5,19 @@ class DayzGps.Models.MapMarker extends Backbone.Model
     @map = DayzGps.google_map
     @info_window_views = DayzGps.info_window_views
 
-    @marker = new @google.maps.Marker
+    @.render()
+    @.setup_event_listeners()
+
+  render: ->
+    opts =
       position: @.get_lat_lng()
       icon: @.icon()
       draggable: true
       map: @map
-
-    @.setup_event_listeners()
+    if @marker?
+      @marker.setOptions(opts)
+    else
+      @marker = new @google.maps.Marker(opts)
 
   setup_event_listeners: ->
     @google.maps.event.addListener @marker, 'click', @.handle_click
@@ -56,7 +62,10 @@ class DayzGps.Models.MapMarker extends Backbone.Model
     @.save()
 
   icon: ->
-    path: @google.maps.SymbolPath.CIRCLE
-    scale: 3
-    fillColor: 'blue'
-    strokeColor: 'blue'
+    if @.get('type') == 'camp'
+      '/assets/tent-icon.gif'
+    else
+      path: @google.maps.SymbolPath.CIRCLE
+      scale: 3
+      fillColor: 'blue'
+      strokeColor: 'blue'

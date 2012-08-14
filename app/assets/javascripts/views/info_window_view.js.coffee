@@ -14,13 +14,25 @@ class DayzGps.Views.InfoWindowView extends Backbone.View
     @info_window.setContent content
 
     google.maps.event.addListener @info_window, 'domready', () =>
-      $("#info-window-delete-" + @map_marker.cid).submit (evnt) =>
+      container = $("#info-window-" + @map_marker.cid)
+      container.find('.marker-type option[value="' + @map_marker.get('type') + '"]').
+        prop('selected','selected')
+      container.find(".save-marker").click (evnt) =>
+        attrs =
+          label: container.find('.marker-label').val()
+          type: container.find('.marker-type').val()
+          description: container.find('.marker-description').val()
+        @map_marker.save attrs,
+          success: =>
+            @map_marker.render()
+            @.close()
+        return false
+
+      container.find(".delete-marker").click (evnt) =>
         @map_marker.delete()
         return false
 
     @info_window.open @map, @map_marker.marker
 
-  close: -> @info_window.setMap()
-
-  delete_marker: ->
-    console.log 'delete marker: ' + @marker.cid
+  close: ->
+    @info_window.setMap()

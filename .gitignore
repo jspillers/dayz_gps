@@ -16,3 +16,4 @@
 .rake_tasks*
 config/asset_sync.yml
 public/assets/
+.DS_Store
