@@ -62,10 +62,21 @@ class DayzGps.Models.MapMarker extends Backbone.Model
     @.save()
 
   icon: ->
-    if @.get('type') == 'camp'
-      '/assets/tent-icon.gif'
-    else
-      path: @google.maps.SymbolPath.CIRCLE
-      scale: 3
-      fillColor: 'blue'
-      strokeColor: 'blue'
+    switch @.get('type')
+      when 'camp' then '/assets/tent.gif'
+      when 'player' then '/assets/player.gif'
+      when 'enemy_player' then '/assets/enemy_player.gif'
+      when 'squad' then '/assets/squad.gif'
+      when 'enemy_squad' then '/assets/enemy_squad.gif'
+      when 'enemy_sniper' then '/assets/sniper_enemy.gif'
+      when 'sniper' then '/assets/sniper_friendly.gif'
+      when 'waypoint'
+        path: @google.maps.SymbolPath.CIRCLE
+        scale: 3
+        fillColor: 'blue'
+        strokeColor: 'blue'
+      else
+        path: @google.maps.SymbolPath.CIRCLE
+        scale: 3
+        fillColor: 'blue'
+        strokeColor: 'blue'
